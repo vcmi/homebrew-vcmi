@@ -1,0 +1,40 @@
+name: Update with new release
+on:
+  repository_dispatch:
+    types: [on-release]
+permissions:
+  contents: write
+jobs:
+  update-formula:
+    runs-on: ubuntu-latest
+    steps:
+      - name: find URLs of macOS assets
+        shell: python
+        run: |
+          import json
+          envFile = open('${{ github.env }}', 'a')
+          release = json.loads('''${{ toJSON(github.event.client_payload.release) }}''')
+          for asset in release['assets']:
+            artifactName = asset['name']
+            if 'macOS-intel' in artifactName:
+              envFile.write(f"INTEL_URL={asset['browser_download_url']}\n")
+            elif 'macOS-arm' in artifactName:
+              envFile.write(f"ARM_URL={asset['browser_download_url']}\n")
+
+      - uses: actions/checkout@v4
+      - name: update formula with new version and asset hashes
+        run: |
+          tag="${{ github.event.client_payload.release.tag_name }}"
+          intelHash=$(curl -L "$INTEL_URL" | sha256sum | cut -d ' ' -f 1)
+          armHash=$(  curl -L "$ARM_URL"   | sha256sum | cut -d ' ' -f 1)
+          sed -E -i \
+            -e "s/version \".+/version \"$tag\"/" \
+            -e "s/intel: \"\\w+\"/intel: \"$intelHash\"/" \
+            -e "s/arm:   \"\\w+\"/arm:   \"$armHash\"/" \
+            Casks/vcmi.rb
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "$tag"
+          git push
