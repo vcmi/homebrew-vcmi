@@ -13,7 +13,7 @@ jobs:
         run: |
           import json
           envFile = open('${{ github.env }}', 'a')
-          release = json.loads('''${{ toJSON(github.event.client_payload.release) }}''')
+          release = json.loads(r'''${{ toJSON(github.event.client_payload.release) }}''')
           for asset in release['assets']:
             artifactName = asset['name']
             if 'macOS-intel' in artifactName:
