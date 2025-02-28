@@ -29,7 +29,7 @@ jobs:
           armHash=$(  curl -L "$ARM_URL"   | sha256sum | cut -d ' ' -f 1)
           sed -E -i \
             -e "s/version \".+/version \"$tag\"/" \
-            -e "s/intel: \"\\w+\"/intel: \"$intelHash\"/" \
+            -e "s/intel: \"[^i]\\w+\"/intel: \"$intelHash\"/" \
             -e "s/arm:   \"\\w+\"/arm:   \"$armHash\"/" \
             Casks/vcmi.rb
 
