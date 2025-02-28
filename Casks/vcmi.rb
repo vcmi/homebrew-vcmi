@@ -1,9 +1,9 @@
 cask "vcmi" do
-  arch arm: "arm", intel: "intel"
+  arch arm: "arm", intel: "5a0549059fee4921a02f4a9218a15c2901607db5b168273d244023d3547576d7"
 
-  version "1.6.6"
-  sha256 arm:   "45c385db2aa0bc40fd964c27205584fa7b0a0e684eade91170c3d5539cd708cd",
-         intel: "fe75b9e32cae9bd4c20b8625638c93205c269a9803ed5edbd64a2d6617c3fee1"
+  version "1.6.7"
+  sha256 arm:   "faaf8a2720fba0ee81616665d157dea9966526156baefda07c5dbab620695671",
+         intel: "5a0549059fee4921a02f4a9218a15c2901607db5b168273d244023d3547576d7"
 
   url "https://github.com/vcmi/vcmi/releases/download/#{version}/VCMI-macOS-#{arch}.dmg",
       verified: "github.com/vcmi/vcmi/"
