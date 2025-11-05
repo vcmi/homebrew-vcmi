@@ -11,7 +11,7 @@ cask "vcmi" do
   desc "Open-source engine for Heroes of Might & Magic III"
   homepage "https://vcmi.eu/"
 
-  depends_on macos: ">= :high_sierra"
+  depends_on macos: ">= :sonoma"
 
   app "VCMI.app"
 
