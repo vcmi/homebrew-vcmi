@@ -21,8 +21,4 @@ cask "vcmi" do
     "~/Library/Preferences/eu.vcmi.vcmi.plist",
     "~/Library/Saved Application State/eu.vcmi.vcmi.savedState",
   ]
-
-  caveats do
-    unsigned_accessibility
-  end
 end
