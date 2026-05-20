@@ -6,10 +6,10 @@ cask "vcmi" do
          intel: "d2e427df80ea10fa1e118125a93554fbae7302aec04e5e70a28d89e0cb13c480"
 
   on_arm do
-    depends_on macos: ">= :big_sur"
+    depends_on macos: :big_sur
   end
   on_intel do
-    depends_on macos: ">= :catalina"
+    depends_on macos: :catalina
   end
 
   url "https://github.com/vcmi/vcmi/releases/download/#{version}/VCMI-macOS-#{arch}.dmg",
@@ -17,6 +17,8 @@ cask "vcmi" do
   name "VCMI"
   desc "Open-source engine for Heroes of Might & Magic III"
   homepage "https://vcmi.eu/"
+
+  depends_on :macos
 
   app "VCMI.app"
 
