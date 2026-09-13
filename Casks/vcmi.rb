@@ -12,8 +12,7 @@ cask "vcmi" do
     depends_on macos: :catalina
   end
 
-  url "https://github.com/vcmi/vcmi/releases/download/#{version}/VCMI-macOS-#{arch}.dmg",
-      verified: "github.com/vcmi/vcmi/"
+  url "https://github.com/vcmi/vcmi/releases/download/#{version}/VCMI-macOS-#{arch}.dmg"
   name "VCMI"
   desc "Open-source engine for Heroes of Might & Magic III"
   homepage "https://vcmi.eu/"
